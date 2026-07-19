@@ -1,0 +1,16 @@
+{
+  "name": "meu-site",
+  "version": "1.0.0",
+  "description": "Sistema de cadastro com Node.js e MySQL",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mysql2": "^3.22.6"
+  }
+}
