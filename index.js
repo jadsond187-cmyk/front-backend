@@ -12,9 +12,10 @@ require("dotenv").config(); // Carrega variáveis de ambiente do arquivo .env
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Servir arquivos estáticos (HTML, CSS, JS) a partir da pasta `public`
-// Ex.: acesso a `/styles.css` será servido por `public/styles.css`
-app.use(express.static(path.join(__dirname, "public")));
+// Servir arquivos estáticos (HTML, CSS, JS) a partir da pasta `public` do projeto root
+// (o `index.js` está em `meu-site/`, mas os arquivos públicos estão em `../public`).
+// Ex.: acesso a `/styles.css` será servido por `../public/styles.css`
+app.use(express.static(path.join(__dirname, "..", "public")));
 
 // Configuração e criação da conexão com o banco MySQL
 // As credenciais e configurações são carregadas via variáveis de ambiente
@@ -44,7 +45,8 @@ conexao.connect((erro) => {
 // Rota: página inicial
 // Envia o arquivo `public/index.html` como resposta quando a raiz `/` é acessada
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
+    // Envia o index.html da pasta pública na raiz do projeto
+    res.sendFile(path.join(__dirname, "..", "public", "index.html"));
 });
 
 // Rota: cadastro de segredo
