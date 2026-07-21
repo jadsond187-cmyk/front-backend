@@ -1,0 +1,120 @@
+/* Copia do styles.css para caminhos alternativos */
+
+/* Tema azul e roxo para o index */
+:root {
+    --bg-start: #1d2a78;
+    --bg-end: #7d3cad;
+    --panel: rgba(255, 255, 255, 0.10);
+    --text: #f3f6ff;
+    --muted: rgba(243, 246, 255, 0.75);
+    --accent: #8b92ff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text);
+    background: radial-gradient(circle at top left, rgba(107, 94, 255, 0.4), transparent 28%),
+                linear-gradient(135deg, var(--bg-start), var(--bg-end));
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at bottom right, rgba(173, 98, 255, 0.25), transparent 30%);
+    pointer-events: none;
+}
+
+header,
+footer {
+    text-align: center;
+    padding: 1.8rem 1rem;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2rem, 3vw, 3rem);
+}
+
+main {
+    max-width: 900px;
+    margin: 1.5rem auto 2rem;
+    padding: 0 1.25rem;
+    display: grid;
+    gap: 1.5rem;
+}
+
+aside,
+section {
+    background: var(--panel);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 24px;
+    padding: 1.8rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+aside p {
+    margin: 0;
+    line-height: 1.8;
+    color: var(--muted);
+}
+
+form {
+    display: grid;
+    gap: 1.2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+}
+
+textarea,
+select,
+input {
+    width: 100%;
+    padding: 1rem 1.1rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    font: inherit;
+}
+
+textarea::placeholder,
+input::placeholder {
+    color: rgba(243, 246, 255, 0.6);
+}
+
+button {
+    padding: 1rem 1.4rem;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #6f7bff, #a16df0);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+}
+
+footer {
+    color: var(--muted);
+}
+
+@media (min-width: 760px) {
+    main {
+        grid-template-columns: 1fr 1.3fr;
+    }
+}
