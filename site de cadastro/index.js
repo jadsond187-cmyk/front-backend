@@ -5,6 +5,12 @@ const fs = require("fs");
 const app = express();
 require("dotenv").config();
 
+// Log básico de requisições para diagnóstico
+app.use((req, res, next) => {
+    console.log(`[request] ${req.method} ${req.url}`);
+    next();
+});
+
 // Permite receber dados em JSON e formulários
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -38,32 +44,26 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Cadastro
+// Cadastro de segredo
 app.post("/cadastro", (req, res) => {
+    const { segredo, categoria } = req.body;
+    const sql = "INSERT INTO segredos(segredo, categoria) VALUES (?, ?)";
 
-    const { nome, idade } = req.body;
-
-    const sql = "INSERT INTO pessoas(nome, idade) VALUES (?, ?)";
-
-    conexao.query(sql, [nome, idade], (erro) => {
-
+    conexao.query(sql, [segredo, categoria], (erro) => {
         if (erro) {
             console.log(erro);
-            return res.send("Erro ao cadastrar.");
+            return res.send("Erro ao cadastrar o segredo.");
         }
 
-        res.send("Cadastro realizado com sucesso!");
+        res.send("Segredo cadastrado com sucesso!");
     });
-
 });
 
-// Consulta
-app.get("/pessoas", (req, res) => {
+// Lista segredos
+app.get("/segredos", (req, res) => {
+    console.log("Rota /segredos foi acessada");
 
-    console.log("Rota /pessoas foi acessada");
-
-    conexao.query("SELECT * FROM pessoas", (erro, resultados) => {
-
+    conexao.query("SELECT * FROM segredos", (erro, resultados) => {
         console.log("Entrou no callback");
 
         if (erro) {
@@ -72,11 +72,10 @@ app.get("/pessoas", (req, res) => {
         }
 
         res.json(resultados);
-
     });
-
 });
-const PORT = process.env.PORT || 3000;
+// Nota: o `express.static` serve `public/styles.css` diretamente.
+const PORT = 3000;
 
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`Servidor rodando na porta ${PORT}`);

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Sistema de Segredos</h1>
+    </header>
+
+    <main>
+        <aside>
+            <p>Compartilhe um segredo e marque se ele é engraçado, triste, de amor ou nunca contei.</p>
+        </aside>
+
+        <section>
+            <form action="/cadastro" method="POST">
+                <label for="segredo">Segredo</label>
+                <textarea
+                    id="segredo"
+                    name="segredo"
+                    placeholder="Digite seu segredo..."
+                    rows="4"
+                    required></textarea>
+
+                <label for="categoria">Categoria</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="">Selecione</option>
+                    <option value="engraçado">Engraçado</option>
+                    <option value="triste">Triste</option>
+                    <option value="amor">Amor</option>
+                    <option value="nunca contei">Nunca contei</option>
+                </select>
+
+                <button type="submit">
+                    Enviar segredo
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Os segredos enviados serão guardados com carinho.</p>
+    </footer>
+</body>
+</html>
